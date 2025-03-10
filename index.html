@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Betaal en Ontvang Code</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    h3 {
+      font-size: 24px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Kies je betaalmethode</h2>
+  <button onclick="pay('tikkie')">Betaal met Tikkie</button>
+  <button onclick="pay('ideal')">Betaal met iDEAL</button>
+  <button onclick="pay('paypal')">Betaal met PayPal</button>
+
+  <div id="codeSection" class="hidden">
+    <h2>Betaling ontvangen!</h2>
+    <p>Hier is je geheime code:</p>
+    <h3>Maps</h3>
+  </div>
+
+  <script>
+    function pay(method) {
+      let urls = {
+        'tikkie': 'https://tikkie.me/pay/voorbeeld',
+        'ideal': 'https://www.example.com/ideal-betaling',
+        'paypal': 'https://www.paypal.com/donate/voorbeeld'
+      };
+
+      let paymentUrl = urls[method];
+
+      if (paymentUrl) {
+        // Laat de geheime code na 5 seconden zien
+        setTimeout(() => {
+          document.getElementById('codeSection').classList.remove('hidden');
+        }, 5000);
+
+        // Open de betaling in een nieuw tabblad
+        window.open(paymentUrl, '_blank');
+      } else {
+        alert('Ongeldige betaalmethode.');
+      }
+    }
+  </script>
+
+</body>
+</html>
