@@ -30,15 +30,25 @@
       font-size: 24px;
       color: #333;
     }
+    img {
+      margin-top: 20px;
+      width: 200px;
+      height: 200px;
+    }
   </style>
 </head>
 <body>
 
-  <h2>Kies je betaalmethode</h2>
-  <button onclick="pay('tikkie')">Betaal met Tikkie</button>
-  <button onclick="pay('ideal')">Betaal met iDEAL</button>
-  <button onclick="pay('paypal')">Betaal met PayPal</button>
+  <h2>Scan de QR-code om te betalen</h2>
 
+  <!-- QR-code sectie voor SumUp (vervang de URL met je echte SumUp QR-code URL) -->
+  <div id="qrCodeSection">
+    <h3>Scan de QR-code om te betalen:</h3>
+    <img src="https://via.placeholder.com/200x200.png?text=SumUp+QR+Code" alt="SumUp QR Code">
+    <p>Voltooi de betaling om de geheime code te ontvangen.</p>
+  </div>
+
+  <!-- Code sectie die zichtbaar wordt na betaling -->
   <div id="codeSection" class="hidden">
     <h2>Betaling ontvangen!</h2>
     <p>Hier is je geheime code:</p>
@@ -46,27 +56,10 @@
   </div>
 
   <script>
-    function pay(method) {
-      let urls = {
-        'tikkie': 'https://tikkie.me/pay/voorbeeld',
-        'ideal': 'https://www.example.com/ideal-betaling',
-        'paypal': 'https://www.paypal.com/donate/voorbeeld'
-      };
-
-      let paymentUrl = urls[method];
-
-      if (paymentUrl) {
-        // Laat de geheime code na 5 seconden zien
-        setTimeout(() => {
-          document.getElementById('codeSection').classList.remove('hidden');
-        }, 5000);
-
-        // Open de betaling in een nieuw tabblad
-        window.open(paymentUrl, '_blank');
-      } else {
-        alert('Ongeldige betaalmethode.');
-      }
-    }
+    // We stellen een timer in om de geheime code zichtbaar te maken na 5 seconden
+    setTimeout(() => {
+      document.getElementById('codeSection').classList.remove('hidden');
+    }, 5000); // Dit wacht 5 seconden na de QR-code weergave
   </script>
 
 </body>
